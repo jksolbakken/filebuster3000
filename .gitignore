@@ -53,6 +53,8 @@ nb-configuration.xml
 # Misc
 *.swp
 
-
 # Ignore Gradle build output directory
 build
+
+# Allow specific file used in tests
+!src/test/resources/test.zip
