@@ -9,7 +9,7 @@ class SignaturesTest {
 
    @Test
    fun `recognizes GIF 89a`() {
-      val fileAsStream = this.javaClass.getResourceAsStream("/gif89a.gif")
+      val fileAsStream = asStream("gif89a.gif")
       val expected = GIF89a
       val actual = determineType(fileAsStream)
       assertEquals(expected, actual)
@@ -17,7 +17,7 @@ class SignaturesTest {
 
    @Test
    fun `recognizes zip`() {
-      val fileAsStream = this.javaClass.getResourceAsStream("/test.zip")
+      val fileAsStream = asStream("test.zip")
       val expected = ZIP
       val actual = determineType(fileAsStream)
       assertEquals(expected, actual)
@@ -25,7 +25,7 @@ class SignaturesTest {
 
    @Test
    fun `recognizes png`() {
-      val fileAsStream = this.javaClass.getResourceAsStream("/kotlin.png")
+      val fileAsStream = asStream("kotlin.png")
       val expected = PNG
       val actual = determineType(fileAsStream)
       assertEquals(expected, actual)
@@ -33,10 +33,12 @@ class SignaturesTest {
 
    @Test
    fun `empty file should't cause crash`() {
-      val fileAsStream = this.javaClass.getResourceAsStream("/empty_file")
+      val fileAsStream = asStream("empty_file")
       val expected = UNKNOWN
       val actual = determineType(fileAsStream)
       assertEquals(expected, actual)
    }
+
+   private fun asStream(name: String) = this.javaClass.classLoader.getResourceAsStream(name)
 
 }
