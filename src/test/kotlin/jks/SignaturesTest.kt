@@ -32,6 +32,14 @@ class SignaturesTest {
    }
 
    @Test
+   fun `recognizes jpg jfif`() {
+      val fileAsStream = asStream("sample1.jfif")
+      val expected = JPG
+      val actual = determineType(fileAsStream)
+      assertEquals(expected, actual)
+   }
+
+   @Test
    fun `empty file should't cause crash`() {
       val fileAsStream = asStream("empty_file")
       val expected = UNKNOWN
